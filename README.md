@@ -1,1 +1,0 @@
-# jquery-vue-react-handson
