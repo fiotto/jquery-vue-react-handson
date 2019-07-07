@@ -12,6 +12,7 @@
   <title>Reactのサンプル</title>
 </head>
 <body>
+  <div id="root"></div>
   <div class="container">
     <h1><span>XXX</span>のサンプル</h1>
 
@@ -94,7 +95,14 @@
 
   <script type="text/babel">
     // TODO ここに記述する
-
+    function App(){
+      return (
+        <div>
+        </div>
+      );
+    }
+    
+    ReactDOM.render(<App />, document.getElementById('root'));
   </script>
 </body>
 </html>
