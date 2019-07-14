@@ -73,10 +73,10 @@
       </div>
 
       <div class="tmp-space">
-        重要度の変更を表示 : <span>true</span>
+        重要度の変更を表示 : <span>{{ isSelectdItem }}</span>
       </div>
 
-      <div>
+      <div v-if="isSelectdItem">
         <div class="content-center">
           <div class="card">
             <p class="text-center">
@@ -98,7 +98,8 @@
       el: '#app',
       data: function(){
         return {
-          title: 'Vue.js'
+          title: 'Vue.js',
+          isSelectdItem: Math.random() > 0.5
         }
       }
     })
