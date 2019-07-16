@@ -35,36 +35,18 @@
           <tbody>
             <tr>
               <td>
-                <p>
-                  <button type="button" class="btn-todo-high selected">掃除</button>
-                </p>
-                <p>
-                  <button type="button" class="btn-todo-high">洗濯</button>
-                </p>
-                <p>
-                  <button type="button" class="btn-todo-high">炊事</button>
+                <p v-for="todo in todos.high" v-bind:key="todo">
+                  <button type="button" class="btn-todo-high">{{ todo }}</button>
                 </p>
               </td>
               <td>
-                <p>
-                  <button type="button" class="btn-todo-normal selected">買い物</button>
-                </p>
-                <p>
-                  <button type="button" class="btn-todo-normal">草刈り</button>
-                </p>
-                <p>
-                  <button type="button" class="btn-todo-normal">アイロン</button>
+                <p v-for="todo in todos.normal" v-bind:key="todo">
+                  <button type="button" class="btn-todo-normal">{{ todo }}</button>
                 </p>
               </td>
               <td>
-                <p>
-                  <button type="button" class="btn-todo-low selected">窓ふき</button>
-                </p>
-                <p>
-                  <button type="button" class="btn-todo-low">振り込み</button>
-                </p>
-                <p>
-                  <button type="button" class="btn-todo-low">家計簿管理</button>
+                <p v-for="todo in todos.low" v-bind:key="todo">
+                  <button type="button" class="btn-todo-low">{{ todo }}</button>
                 </p>
               </td>
             </tr>
@@ -99,7 +81,12 @@
       data: function(){
         return {
           title: 'Vue.js',
-          isSelectdItem: Math.random() > 0.5
+          isSelectdItem: Math.random() > 0.5,
+          todos: {
+            high: ['掃除', '洗濯', '炊事'],
+            normal: ['買い物', '草刈り', 'アイロン'],
+            low: ['窓拭き', '振り込み', '家計簿管理']
+          }
         }
       }
     })
