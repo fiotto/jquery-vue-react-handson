@@ -33,38 +33,11 @@
         </thead>
         <tbody>
           <tr>
-            <td>
-              <p>
-                <button type="button" class="btn-todo-high selected">掃除</button>
-              </p>
-              <p>
-                <button type="button" class="btn-todo-high">洗濯</button>
-              </p>
-              <p>
-                <button type="button" class="btn-todo-high">炊事</button>
-              </p>
+            <td id="area-todo-high">
             </td>
-            <td>
-              <p>
-                <button type="button" class="btn-todo-normal selected">買い物</button>
-              </p>
-              <p>
-                <button type="button" class="btn-todo-normal">草刈り</button>
-              </p>
-              <p>
-                <button type="button" class="btn-todo-normal">アイロン</button>
-              </p>
+            <td id="area-todo-normal">
             </td>
-            <td>
-              <p>
-                <button type="button" class="btn-todo-low selected">窓ふき</button>
-              </p>
-              <p>
-                <button type="button" class="btn-todo-low">振り込み</button>
-              </p>
-              <p>
-                <button type="button" class="btn-todo-low">家計簿管理</button>
-              </p>
+            <td id="area-todo-low">
             </td>
           </tr>
         </tbody>
@@ -102,6 +75,49 @@
 
     $('#text-is-selectd-item').text(String(isSelectdItem));
     isSelectdItem ? $('#area-is-selectd-item').show() : $('#area-is-selectd-item').hide();
+
+    // STEP 4
+    const todos = {
+      high : ['掃除', '洗濯', '炊事'],
+      normal: ['買い物', '草刈り', 'アイロン'],
+      low: ['窓拭き', '振り込み', '家計簿管理']
+    };
+
+    $('#area-todo-high').empty();
+    for(todo of todos.high){
+      $('#area-todo-high').append(
+        $('<p></p>').append(
+          $('<button></button>', {
+            'type': 'button',
+            'class': 'btn-todo-high'
+          }).append(todo)
+        )
+      );
+    }
+
+    $('#area-todo-normal').empty();
+    for(todo of todos.normal){
+      $('#area-todo-normal').append(
+        $('<p></p>').append(
+          $('<button></button>', {
+            'type': 'button',
+            'class': 'btn-todo-normal'
+          }).append(todo)
+        )
+      );
+    }
+
+    $('#area-todo-low').empty();
+    for(todo of todos.low){
+      $('#area-todo-low').append(
+        $('<p></p>').append(
+          $('<button></button>', {
+            'type': 'button',
+            'class': 'btn-todo-low'
+          }).append(todo)
+        )
+      );
+    }
   </script>
 </body>
 </html>
