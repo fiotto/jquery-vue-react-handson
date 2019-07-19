@@ -20,6 +20,11 @@
 
     function App(){
       const isSelectdItem = Math.random() > 0.5;
+      const todos = {
+        high : ['掃除', '洗濯', '炊事'],
+        normal: ['買い物', '草刈り', 'アイロン'],
+        low: ['窓拭き', '振り込み', '家計簿管理']
+      };
 
       return (
         <div className="container">
@@ -46,37 +51,25 @@
               <tbody>
                 <tr>
                   <td>
-                    <p>
-                      <button type="button" className="btn-todo-high selected">掃除</button>
-                    </p>
-                    <p>
-                      <button type="button" className="btn-todo-high">洗濯</button>
-                    </p>
-                    <p>
-                      <button type="button" className="btn-todo-high">炊事</button>
-                    </p>
+                    { todos.high.map((todo) => (
+                      <p key={ todo }>
+                        <button type="button" className="btn-todo-high">{ todo }</button>
+                      </p>
+                    )) }
                   </td>
                   <td>
-                    <p>
-                      <button type="button" className="btn-todo-normal selected">買い物</button>
-                    </p>
-                    <p>
-                      <button type="button" className="btn-todo-normal">草刈り</button>
-                    </p>
-                    <p>
-                      <button type="button" className="btn-todo-normal">アイロン</button>
-                    </p>
+                    { todos.normal.map((todo) => (
+                      <p key={ todo }>
+                        <button type="button" className="btn-todo-normal">{ todo }</button>
+                      </p>
+                    )) }
                   </td>
                   <td>
-                    <p>
-                      <button type="button" className="btn-todo-low selected">窓ふき</button>
-                    </p>
-                    <p>
-                      <button type="button" className="btn-todo-low">振り込み</button>
-                    </p>
-                    <p>
-                      <button type="button" className="btn-todo-low">家計簿管理</button>
-                    </p>
+                    { todos.low.map((todo) => (
+                      <p key={ todo }>
+                        <button type="button" className="btn-todo-low">{ todo }</button>
+                      </p>
+                    ))}
                   </td>
                 </tr>
               </tbody>
