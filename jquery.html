@@ -14,12 +14,12 @@
     <h1><span id="text-title">___</span>のサンプル</h1>
 
     <div class="row">
-      <input type="text" class="form-control"/>
+      <input type="text" class="form-control" id="input-item"/>
       <button type="button" class="btn-action">追加</button>
     </div>
 
     <div class="tmp-space">
-      入力値 : <span>掃除</span>
+      入力値 : <span id="text-item">___</span>
     </div>
 
     <div>
@@ -118,6 +118,11 @@
         )
       );
     }
+
+    // STEP 5
+    $('#input-item').on('input', function(){
+      $('#text-item').text($(this).val());
+    }).trigger('input');
   </script>
 </body>
 </html>
