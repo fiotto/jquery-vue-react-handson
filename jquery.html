@@ -89,7 +89,7 @@
         $('<p></p>').append(
           $('<button></button>', {
             'type': 'button',
-            'class': 'btn-todo-high'
+            'class': 'btn-todo btn-todo-high'
           }).append(todo)
         )
       );
@@ -101,7 +101,7 @@
         $('<p></p>').append(
           $('<button></button>', {
             'type': 'button',
-            'class': 'btn-todo-normal'
+            'class': 'btn-todo btn-todo-normal'
           }).append(todo)
         )
       );
@@ -113,7 +113,7 @@
         $('<p></p>').append(
           $('<button></button>', {
             'type': 'button',
-            'class': 'btn-todo-low'
+            'class': 'btn-todo btn-todo-low'
           }).append(todo)
         )
       );
@@ -136,13 +136,19 @@
         $('<p></p>').append(
           $('<button></button>', {
             'type': 'button',
-            'class': 'btn-todo-normal'
+            'class': 'btn-todo btn-todo-normal'
           }).append(inputItem)
         )
       );
 
       $('#input-item').val('');
       $('#input-item').trigger('input');
+    });
+
+    // STEP 7
+    $(document).on('click', '.btn-todo', function(){
+      $('.btn-todo').removeClass('selected');
+      $(this).addClass('selected');
     });
   </script>
 </body>
