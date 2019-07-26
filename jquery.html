@@ -52,7 +52,7 @@
       <div class="content-center">
         <div class="card">
           <p class="text-center">
-            <span class="color-red">洗濯</span>の重要度を
+            <span class="color-red" id="text-selected-item">___</span>の重要度を
           </p>
           <p>
             <button type="button" class="btn-action" disabled>上げる</button>
@@ -71,10 +71,6 @@
     $('#text-title').text(title);
 
     // STEP 3
-    const isSelectdItem = Math.random() > 0.5;
-
-    $('#text-is-selectd-item').text(String(isSelectdItem));
-    isSelectdItem ? $('#area-is-selectd-item').show() : $('#area-is-selectd-item').hide();
 
     // STEP 4
     const todos = {
@@ -146,9 +142,16 @@
     });
 
     // STEP 7
+    $('#area-is-selectd-item').hide();
+    $('#text-is-selectd-item').text(String(false));
+
     $(document).on('click', '.btn-todo', function(){
       $('.btn-todo').removeClass('selected');
       $(this).addClass('selected');
+
+      $('#area-is-selectd-item').show();
+      $('#text-is-selectd-item').text(String(true));
+      $('#text-selected-item').text($(this).text());
     });
   </script>
 </body>
