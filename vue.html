@@ -71,7 +71,7 @@
         <div class="content-center">
           <div class="card">
             <p class="text-center">
-              <span class="color-red">洗濯</span>の重要度を
+              <span class="color-red">{{ selectedItem }}</span>の重要度を
             </p>
             <p>
               <button type="button" class="btn-action" disabled>上げる</button>
@@ -90,7 +90,6 @@
       data: function(){
         return {
           title: 'Vue.js',
-          isSelectdItem: Math.random() > 0.5,
           todos: {
             high: ['掃除', '洗濯', '炊事'],
             normal: ['買い物', '草刈り', 'アイロン'],
@@ -98,6 +97,11 @@
           },
           inputItem: '',
           selectedItem: null
+        }
+      },
+      computed: {
+        isSelectdItem: function(){
+          return this.selectedItem !== null;
         }
       },
       methods: {
