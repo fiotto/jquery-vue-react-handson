@@ -36,17 +36,26 @@
             <tr>
               <td>
                 <p v-for="todo in todos.high" v-bind:key="todo">
-                  <button type="button" class="btn-todo-high">{{ todo }}</button>
+                  <button type="button" class="btn-todo-high"
+                    v-bind:class="{ 'selected': todo === selectedItem }"
+                    v-on:click="onClickTodo(todo)"
+                  >{{ todo }}</button>
                 </p>
               </td>
               <td>
                 <p v-for="todo in todos.normal" v-bind:key="todo">
-                  <button type="button" class="btn-todo-normal">{{ todo }}</button>
+                  <button type="button" class="btn-todo-normal"
+                    v-bind:class="{ 'selected': todo === selectedItem }"
+                    v-on:click="onClickTodo(todo)"
+                  >{{ todo }}</button>
                 </p>
               </td>
               <td>
                 <p v-for="todo in todos.low" v-bind:key="todo">
-                  <button type="button" class="btn-todo-low">{{ todo }}</button>
+                  <button type="button" class="btn-todo-low"
+                    v-bind:class="{ 'selected': todo === selectedItem }"
+                    v-on:click="onClickTodo(todo)"
+                  >{{ todo }}</button>
                 </p>
               </td>
             </tr>
@@ -87,13 +96,17 @@
             normal: ['買い物', '草刈り', 'アイロン'],
             low: ['窓拭き', '振り込み', '家計簿管理']
           },
-          inputItem: ''
+          inputItem: '',
+          selectedItem: null
         }
       },
       methods: {
         addItem: function(){
           this.todos.normal.push(this.inputItem);
           this.inputItem = '';
+        },
+        onClickTodo: function(todo){
+          this.selectedItem = todo;
         }
       }
     })
