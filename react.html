@@ -26,11 +26,16 @@
         low: ['窓拭き', '振り込み', '家計簿管理']
       });
       const [inputItem, setInputItem] = React.useState('');
+      const [selectedItem, setSelectedItem] = React.useState(null);
 
       function addItem(){
         todos.normal.push(inputItem);
         setTodos({...todos});
         setInputItem('');
+      }
+
+      function onClickTodo(todo){
+        setSelectedItem(todo);
       }
 
       return (
@@ -63,21 +68,30 @@
                   <td>
                     { todos.high.map((todo) => (
                       <p key={ todo }>
-                        <button type="button" className="btn-todo-high">{ todo }</button>
+                        <button type="button"
+                          className={ "btn-todo-high " + ( todo === selectedItem ? 'selected' : '' ) }
+                          onClick={ () => onClickTodo(todo) }
+                        >{ todo }</button>
                       </p>
                     )) }
                   </td>
                   <td>
                     { todos.normal.map((todo) => (
                       <p key={ todo }>
-                        <button type="button" className="btn-todo-normal">{ todo }</button>
+                        <button type="button"
+                          className={ "btn-todo-normal " + ( todo === selectedItem ? 'selected' : '' ) }
+                          onClick={ () => onClickTodo(todo) }
+                        >{ todo }</button>
                       </p>
                     )) }
                   </td>
                   <td>
                     { todos.low.map((todo) => (
                       <p key={ todo }>
-                        <button type="button" className="btn-todo-low">{ todo }</button>
+                        <button type="button"
+                          className={ "btn-todo-low " + ( todo === selectedItem ? 'selected' : '' ) }
+                          onClick={ () => onClickTodo(todo) }
+                        >{ todo }</button>
                       </p>
                     ))}
                   </td>
