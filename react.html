@@ -19,7 +19,6 @@
     const title = 'React';
 
     function App(){
-      const isSelectdItem = Math.random() > 0.5;
       const [todos, setTodos] = React.useState({
         high : ['掃除', '洗濯', '炊事'],
         normal: ['買い物', '草刈り', 'アイロン'],
@@ -36,6 +35,10 @@
 
       function onClickTodo(todo){
         setSelectedItem(todo);
+      }
+
+      function isSelectdItem(){
+        return selectedItem !== null;
       }
 
       return (
@@ -101,15 +104,15 @@
           </div>
 
           <div className="tmp-space">
-            重要度の変更を表示 : <span>{ String(isSelectdItem) }</span>
+            重要度の変更を表示 : <span>{ String(isSelectdItem()) }</span>
           </div>
           
-          { isSelectdItem && (
+          { isSelectdItem() && (
             <div>
               <div className="content-center">
                 <div className="card">
                   <p className="text-center">
-                    <span className="color-red">洗濯</span>の重要度を
+                    <span className="color-red">{ selectedItem }</span>の重要度を
                   </p>
                   <p>
                     <button type="button" className="btn-action" disabled>上げる</button>
