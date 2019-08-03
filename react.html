@@ -20,9 +20,9 @@
 
     function App(){
       const [todos, setTodos] = React.useState({
-        high : ['掃除', '洗濯', '炊事'],
-        normal: ['買い物', '草刈り', 'アイロン'],
-        low: ['窓拭き', '振り込み', '家計簿管理']
+        high : [],
+        normal: [],
+        low: []
       });
       const [inputItem, setInputItem] = React.useState('');
       const [selectedItem, setSelectedItem] = React.useState(null);
@@ -74,10 +74,6 @@
             <button type="button" className="btn-action" onClick={ addItem }>追加</button>
           </div>
 
-          <div className="tmp-space">
-            入力値 : <span>{ inputItem }</span>
-          </div>
-
           <div>
             <table className="table-bordered">
               <thead>
@@ -124,10 +120,6 @@
             </table>
           </div>
 
-          <div className="tmp-space">
-            重要度の変更を表示 : <span>{ String(isSelectdItem()) }</span>
-          </div>
-          
           { isSelectdItem() && (
             <div>
               <div className="content-center">
