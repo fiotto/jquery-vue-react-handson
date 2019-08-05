@@ -12,7 +12,7 @@
 <body>
   <div id="app">
     <div class="container">
-      <h1><span>XXX</span>のサンプル</h1>
+      <h1><span>{{ title }}</span>のサンプル</h1>
 
       <div class="row">
         <input type="text" class="form-control"/>
@@ -95,7 +95,12 @@
   <script>
     // TODO ここに記述する
     const app = new Vue({
-      el: '#app'
+      el: '#app',
+      data: function(){
+        return {
+          title: 'Vue.js'
+        }
+      }
     })
   </script>
 </body>
