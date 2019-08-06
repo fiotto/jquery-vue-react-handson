@@ -72,10 +72,10 @@
     </div>
 
     <div class="tmp-space">
-      重要度の変更を表示 : <span>true</span>
+      重要度の変更を表示 : <span id="text-is-selectd-item">___</span>
     </div>
 
-    <div>
+    <div id="area-is-selectd-item">
       <div class="content-center">
         <div class="card">
           <p class="text-center">
@@ -96,6 +96,12 @@
     const title = 'jQuery';
 
     $('#text-title').text(title);
+
+    // STEP 3
+    const isSelectdItem = Math.random() > 0.5;
+
+    $('#text-is-selectd-item').text(String(isSelectdItem));
+    isSelectdItem ? $('#area-is-selectd-item').show() : $('#area-is-selectd-item').hide();
   </script>
 </body>
 </html>
