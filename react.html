@@ -19,6 +19,8 @@
     const title = 'React';
 
     function App(){
+      const isSelectdItem = Math.random() > 0.5;
+
       return (
         <div className="container">
           <h1><span>{ title }</span>のサンプル</h1>
@@ -82,22 +84,24 @@
           </div>
 
           <div className="tmp-space">
-            重要度の変更を表示 : <span>true</span>
+            重要度の変更を表示 : <span>{ String(isSelectdItem) }</span>
           </div>
-
-          <div>
-            <div className="content-center">
-              <div className="card">
-                <p className="text-center">
-                  <span className="color-red">洗濯</span>の重要度を
-                </p>
-                <p>
-                  <button type="button" className="btn-action" disabled>上げる</button>
-                  <button type="button" className="btn-action">下げる</button>
-                </p>
+          
+          { isSelectdItem && (
+            <div>
+              <div className="content-center">
+                <div className="card">
+                  <p className="text-center">
+                    <span className="color-red">洗濯</span>の重要度を
+                  </p>
+                  <p>
+                    <button type="button" className="btn-action" disabled>上げる</button>
+                    <button type="button" className="btn-action">下げる</button>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       );
     }
