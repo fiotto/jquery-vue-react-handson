@@ -15,12 +15,12 @@
       <h1><span>{{ title }}</span>のサンプル</h1>
 
       <div class="row">
-        <input type="text" class="form-control"/>
+        <input type="text" class="form-control" v-model="inputItem"/>
         <button type="button" class="btn-action">追加</button>
       </div>
 
       <div class="tmp-space">
-        入力値 : <span>掃除</span>
+        入力値 : <span>{{ inputItem }}</span>
       </div>
 
       <div>
@@ -86,7 +86,8 @@
             high: ['掃除', '洗濯', '炊事'],
             normal: ['買い物', '草刈り', 'アイロン'],
             low: ['窓拭き', '振り込み', '家計簿管理']
-          }
+          },
+          inputItem: ''
         }
       }
     })
