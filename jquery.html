@@ -15,7 +15,7 @@
 
     <div class="row">
       <input type="text" class="form-control" id="input-item"/>
-      <button type="button" class="btn-action">追加</button>
+      <button type="button" class="btn-action" id="button-add">追加</button>
     </div>
 
     <div class="tmp-space">
@@ -123,6 +123,27 @@
     $('#input-item').on('input', function(){
       $('#text-item').text($(this).val());
     }).trigger('input');
+
+    // STEP 6
+    $('#input-item').on('input', function(){
+      $('#text-item').text($(this).val());
+    }).trigger('input');
+
+    $('#button-add').on('click', function(){
+      const inputItem = $('#input-item').val();
+
+      $('#area-todo-normal').append(
+        $('<p></p>').append(
+          $('<button></button>', {
+            'type': 'button',
+            'class': 'btn-todo-normal'
+          }).append(inputItem)
+        )
+      );
+
+      $('#input-item').val('');
+      $('#input-item').trigger('input');
+    });
   </script>
 </body>
 </html>
