@@ -36,17 +36,26 @@
             <tr>
               <td>
                 <p v-for="todo in todos.high" v-bind:key="todo">
-                  <button type="button" class="btn-todo-high">{{ todo }}</button>
+                  <button type="button" class="btn-todo-high"
+                    v-bind:class="{ 'selected': todo === selectedItem }"
+                    v-on:click="onClickTodo(todo)"
+                  >{{ todo }}</button>
                 </p>
               </td>
               <td>
                 <p v-for="todo in todos.normal" v-bind:key="todo">
-                  <button type="button" class="btn-todo-normal">{{ todo }}</button>
+                  <button type="button" class="btn-todo-normal"
+                    v-bind:class="{ 'selected': todo === selectedItem }"
+                    v-on:click="onClickTodo(todo)"
+                  >{{ todo }}</button>
                 </p>
               </td>
               <td>
                 <p v-for="todo in todos.low" v-bind:key="todo">
-                  <button type="button" class="btn-todo-low">{{ todo }}</button>
+                  <button type="button" class="btn-todo-low"
+                    v-bind:class="{ 'selected': todo === selectedItem }"
+                    v-on:click="onClickTodo(todo)"
+                  >{{ todo }}</button>
                 </p>
               </td>
             </tr>
@@ -62,7 +71,7 @@
         <div class="content-center">
           <div class="card">
             <p class="text-center">
-              <span class="color-red">洗濯</span>の重要度を
+              <span class="color-red">{{ selectedItem }}</span>の重要度を
             </p>
             <p>
               <button type="button" class="btn-action" disabled>上げる</button>
@@ -81,19 +90,27 @@
       data: function(){
         return {
           title: 'Vue.js',
-          isSelectdItem: Math.random() > 0.5,
           todos: {
             high: ['掃除', '洗濯', '炊事'],
             normal: ['買い物', '草刈り', 'アイロン'],
             low: ['窓拭き', '振り込み', '家計簿管理']
           },
-          inputItem: ''
+          inputItem: '',
+          selectedItem: null
+        }
+      },
+      computed: {
+        isSelectdItem: function(){
+          return this.selectedItem !== null;
         }
       },
       methods: {
         addItem: function(){
           this.todos.normal.push(this.inputItem);
           this.inputItem = '';
+        },
+        onClickTodo: function(todo){
+          this.selectedItem = todo;
         }
       }
     })
