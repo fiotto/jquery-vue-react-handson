@@ -74,8 +74,14 @@
               <span class="color-red">{{ selectedItem }}</span>の重要度を
             </p>
             <p>
-              <button type="button" class="btn-action" disabled>上げる</button>
-              <button type="button" class="btn-action">下げる</button>
+              <button type="button" class="btn-action"
+                v-bind:disabled="todos.high.includes(selectedItem)"
+                v-on:click="onClickPriority(1)"
+              >上げる</button>
+              <button type="button" class="btn-action"
+                v-bind:disabled="todos.low.includes(selectedItem)"
+                v-on:click="onClickPriority(-1)"
+              >下げる</button>
             </p>
           </div>
         </div>
@@ -111,6 +117,24 @@
         },
         onClickTodo: function(todo){
           this.selectedItem = todo;
+        },
+        onClickPriority: function(signum){
+          const keys = Object.keys(this.todos);
+
+          for(let idx in keys){
+            const key = keys[idx];
+
+            if(this.todos[key].includes(this.selectedItem)){
+              this.todos[key] = this.todos[key].filter((a) => a !== this.selectedItem);
+
+              const destIndex = (signum > 0) ? Number(idx)-1 : Number(idx)+1;
+              const dest = keys[destIndex];
+              this.todos[dest].push(this.selectedItem);
+
+              this.selectedItem = null;
+              break;
+            }
+          }
         }
       }
     })
