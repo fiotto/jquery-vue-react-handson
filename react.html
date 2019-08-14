@@ -41,6 +41,27 @@
         return selectedItem !== null;
       }
 
+      function onClickPriority(signum){
+        const keys = Object.keys(todos);
+
+        for(let idx in keys){
+          const key = keys[idx];
+
+          if(todos[key].includes(selectedItem)){
+            todos[key] = todos[key].filter((a) => a !== selectedItem);
+
+            const destIndex = (signum > 0) ? Number(idx)-1 : Number(idx)+1;
+            const dest = keys[destIndex];
+            todos[dest].push(selectedItem);
+
+            setSelectedItem(null);
+            break;
+          }
+        }
+
+        setTodos({...todos});
+      }
+
       return (
         <div className="container">
           <h1><span>{ title }</span>のサンプル</h1>
@@ -115,8 +136,14 @@
                     <span className="color-red">{ selectedItem }</span>の重要度を
                   </p>
                   <p>
-                    <button type="button" className="btn-action" disabled>上げる</button>
-                    <button type="button" className="btn-action">下げる</button>
+                    <button type="button" className="btn-action"
+                      disabled={ todos.high.includes(selectedItem) }
+                      onClick={ () => onClickPriority(1) }
+                    >上げる</button>
+                    <button type="button" className="btn-action"
+                      disabled={ todos.low.includes(selectedItem) }
+                      onClick={ () => onClickPriority(-1) }
+                    >下げる</button>
                   </p>
                 </div>
               </div>
