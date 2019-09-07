@@ -18,6 +18,42 @@
     // TODO ここに記述する
     const title = 'React';
 
+    function Priority(props){
+      function isSelectdItem(){
+        return props.selectedItem !== null;
+      }
+
+      function onClickPriority(signum){
+        props.onClickPriority(signum)
+      }
+
+      if(isSelectdItem()){
+        return (
+          <div>
+            <div className="content-center">
+              <div className="card">
+                <p className="text-center">
+                  <span className="color-red">{ props.selectedItem }</span>の重要度を
+                </p>
+                <p>
+                  <button type="button" className="btn-action"
+                    disabled={ props.selectedPriority === 'high' }
+                    onClick={ () => onClickPriority(1) }
+                  >上げる</button>
+                  <button type="button" className="btn-action"
+                    disabled={ props.selectedPriority === 'low' }
+                    onClick={ () => onClickPriority(-1) }
+                  >下げる</button>
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      }else{
+        return null;
+      }
+    }
+
     function App(){
       const [todos, setTodos] = React.useState({
         high : [],
@@ -37,8 +73,11 @@
         setSelectedItem(todo);
       }
 
-      function isSelectdItem(){
-        return selectedItem !== null;
+      function selectedPriority(){
+        const keys = Object.keys(todos);
+        const selectedPriority = keys.filter((a) => todos[a].includes(selectedItem));
+
+        return selectedPriority[0];
       }
 
       function onClickPriority(signum){
@@ -120,27 +159,11 @@
             </table>
           </div>
 
-          { isSelectdItem() && (
-            <div>
-              <div className="content-center">
-                <div className="card">
-                  <p className="text-center">
-                    <span className="color-red">{ selectedItem }</span>の重要度を
-                  </p>
-                  <p>
-                    <button type="button" className="btn-action"
-                      disabled={ todos.high.includes(selectedItem) }
-                      onClick={ () => onClickPriority(1) }
-                    >上げる</button>
-                    <button type="button" className="btn-action"
-                      disabled={ todos.low.includes(selectedItem) }
-                      onClick={ () => onClickPriority(-1) }
-                    >下げる</button>
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
+          <Priority
+            selectedItem={ selectedItem }
+            selectedPriority={ selectedPriority() }
+            onClickPriority={ onClickPriority }
+          ></Priority>
         </div>
       );
     }
